@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Calendar</title>
+</head>
+<body>
+</body>
+<div id="wrapper">
+  <h1>Advent Calendar</h1>
+  <input class="button" type="button" value="Discover All" onClick="refresh()">
+  <div id="container">
+  </div>
+</div>
+</body>
+<script>
+function refresh(){
+var container = document.getElementById('container');
+var couleurs = ["green","red","blue","yellow"];
+var nombres = Array.from(Array(24).keys()).map(x => ++x);
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  while (currentIndex != 0) {
+
+    
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+shuffle(nombres);
+
+container.innerHTML="";
+nombres.forEach((jour) => {
+    shuffle(couleurs);
+    container.innerHTML += '<div class="jour '+couleurs[0]+'"><img class="image" src="img/'+jour+'.jpg" alt="">'+jour+'</div>';
+});
+}
+window.addEventListener("load", refresh);
+</script>
+</html>
